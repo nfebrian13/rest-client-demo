@@ -34,19 +34,14 @@ public class MainClass {
 				token.setToken_type(resultToken.get("token_type").toString());
 				token.setExpires_in(resultToken.get("expires_in").toString());
 				token.setScope(resultToken.get("scope").toString());
-				
 			} else {
 				System.out.println("server error");
-
 			}
-			
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 		return token;
 	}
-
 }
