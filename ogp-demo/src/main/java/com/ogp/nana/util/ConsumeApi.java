@@ -17,16 +17,18 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 
+import com.ogp.nana.constant.Environment;
+
 public class ConsumeApi {
 
 	public String getToken(String urlToRead) throws ClientProtocolException, IOException {
+
 		String result = "";
 		CloseableHttpClient httpClient = HttpClients.createDefault();
-		String auth = "MTg2NzAzY2EtMTQxYS00OTZiLWI0M2MtMzk2NDY1Zjk5MzI0OmVkMTRiZjJlLWU2YmEtNGZmYi04OWY2LTYxMjQzOTJiODA0NQ==";
 
 		try {
 			HttpPost postRequest = new HttpPost(urlToRead);
-			postRequest.setHeader("Authorization", "Basic " + auth);
+			postRequest.setHeader("Authorization", "Basic " + Environment.AUTH.getUrl());
 			postRequest.setHeader("content-type", "application/x-www-form-urlencoded");
 
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
@@ -51,11 +53,10 @@ public class ConsumeApi {
 		ResponseHandler<String> handler = new BasicResponseHandler();
 
 		CloseableHttpClient httpClient = HttpClients.createDefault();
-		String auth = "MTg2NzAzY2EtMTQxYS00OTZiLWI0M2MtMzk2NDY1Zjk5MzI0OmVkMTRiZjJlLWU2YmEtNGZmYi04OWY2LTYxMjQzOTJiODA0NQ==";
 
 		try {
 			HttpPost postRequest = new HttpPost(urlToRead);
-			postRequest.setHeader("Authorization", "Basic " + auth);
+			postRequest.setHeader("Authorization", "Basic " + Environment.AUTH.getUrl());
 			postRequest.setHeader("content-type", "application/x-www-form-urlencoded");
 
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
@@ -66,7 +67,7 @@ public class ConsumeApi {
 
 			result = handler.handleResponse(response);
 			Integer statusCode = response.getStatusLine().getStatusCode();
-			
+
 			map.put("result", result);
 			map.put("statusCode", statusCode.toString());
 
